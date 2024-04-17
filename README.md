@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded()
- setfpscap(15)
+ 
 if SelectSpeedgame == "2" then
 game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
 end
