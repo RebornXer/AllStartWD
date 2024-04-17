@@ -2906,7 +2906,7 @@ end)
 
 
 spawn(function()
-while wait() do
+while wait(2) do
 pcall(function()
  if  _G.AutoStarPass2 then
 
@@ -2927,7 +2927,7 @@ end)
 
 
 spawn(function()
-while wait() do
+while wait(1) do
 pcall(function()
  if  _G.AutoStarPass2 then
 game:GetService("ReplicatedStorage").Remotes.Server:InvokeServer("Upgrade",workspace:WaitForChild("Unit"):WaitForChild("Ivankov2"))
