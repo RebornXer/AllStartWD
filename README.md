@@ -6,7 +6,7 @@ end
 
 if SelectSpeedgame == "3" then
 game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
-wait(0.1)
+wait(0.5)
 game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
 end
 local ZenHub = Instance.new("ScreenGui")
@@ -2888,16 +2888,17 @@ end
 end)
 
 spawn(function()
-while wait(1) do
+while wait() do
  if _G.AutoEx then
   pcall(function()
+  if game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Visible == true then
 local argws = {
     [1] = "VoteGameMode",
     [2] = "Extreme"
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Input"):FireServer(unpack(argws))
-
+end
 end)
 end
 end
