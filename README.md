@@ -2910,7 +2910,7 @@ spawn(function()
 while wait(2) do
 pcall(function()
  if  _G.AutoStarPass2 then
-
+if not game:GetService("Workspace").Unit.FindFirstChild("Ivankov2") then
 local args = {
     [1] = "Summon",
     [2] = {
@@ -2921,6 +2921,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Input"):FireServer(unpack(args))
+end
 end
 end)
 end
