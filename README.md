@@ -2928,9 +2928,7 @@ end)
 end
 end)
 
-while wait(7) do
-game:GetService("Players").LocalPlayer.PlayerGui.TowerPassRewards.Enabled = true
-end
+
 
 spawn(function()
 while wait(1) do
