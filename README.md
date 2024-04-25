@@ -9,6 +9,7 @@ game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true
 wait(0.5)
 game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
 end
+game:GetService("Players").LocalPlayer.PlayerGui.TowerPassRewards
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
 local fuckshit = Instance.new("UICorner")
