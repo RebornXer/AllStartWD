@@ -2908,25 +2908,42 @@ end)
 
 
 spawn(function()
-while wait(5) do
-pcall(function()
- if  _G.AutoStarPass2 then
+    while wait(5) do
+        pcall(function()
+            if _G.AutoStarPass2 then
+                -- กำหนดตำแหน่งและชื่อ Unit ที่ต้องการวาง
+                local targetPosition = Vector3.new(65.02046203613281, 176.46029663085938, 1274.2550048828125)
+                local unitName = "Ivankov2"
 
-local args = {
-    [1] = "Summon",
-    [2] = {
-        ["Rotation"] = 0,
-        ["cframe"] = CFrame.new(65.02046203613281, 176.46029663085938, 1274.2550048828125, 1, 0, 0, 0, 1, 0, 0, 0, 1),
-        ["Unit"] = "Ivankov2"
-    }
-}
+                -- ตรวจสอบว่ามี Unit ที่ตำแหน่งนี้หรือไม่
+                local hasUnit = false
+                for _, unit in pairs(game.Workspace:GetChildren()) do
+                    if unit:IsA("Model") and unit.Name == unitName then
+                        local primaryPart = unit:FindFirstChild("HumanoidRootPart") or unit.PrimaryPart
+                        if primaryPart and primaryPart.Position == targetPosition then
+                            hasUnit = true
+                            break
+                        end
+                    end
+                end
 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Input"):FireServer(unpack(args))
-
-end
+                -- ถ้าไม่มี Unit ที่ตำแหน่งนี้, ทำการวาง Unit ใหม่
+                if not hasUnit then
+                    local args = {
+                        [1] = "Summon",
+                        [2] = {
+                            ["Rotation"] = 0,
+                            ["cframe"] = CFrame.new(targetPosition),
+                            ["Unit"] = unitName
+                        }
+                    }
+                    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Input"):FireServer(unpack(args))
+                end
+            end
+        end)
+    end
 end)
-end
-end)
+
 
 
 
