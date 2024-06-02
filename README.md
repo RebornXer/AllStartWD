@@ -2895,98 +2895,95 @@ Auto_Sent_WebHook = a
 end)
 
 spawn(function()
- pcall(function()
-  while wait() do
-   if Auto_Sent_WebHook then
-     if game:GetService("Players").LocalPlayer.PlayerGui.HUD.MissionEnd.BG.Status.Visible == true then
-local Name = game:GetService("Players").LocalPlayer.Name
-local PlayerCount = #game.Players:GetPlayers()
-    		if game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Normal.Vote.Text == "0" then
-    Mirage = "Normal"
+    pcall(function()
+        while true do
+            wait()
+            if Auto_Sent_WebHook then
+                if game:GetService("Players").LocalPlayer.PlayerGui.HUD.MissionEnd.BG.Status.Visible == true then
+                    local Name = game:GetService("Players").LocalPlayer.Name
+                    local PlayerCount = #game.Players:GetPlayers()
+                    local Mirage
 
-else
-    Mirage = "Extreme"
-end
+                    if game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Normal.Vote.Text == "0" then
+                        Mirage = "Normal"
+                    else
+                        Mirage = "Extreme"
+                    end
 
-if game:GetService("Players").LocalPlayer.PlayerGui.HUD.MissionEnd.BG.Status.Status.Text == "Success!" then
-Result = "Win"
-else
-Result = "Lose"
-end
+                    local Result
+                    if game:GetService("Players").LocalPlayer.PlayerGui.HUD.MissionEnd.BG.Status.Status.Text == "Success!" then
+                        Result = "Win"
+                    else
+                        Result = "Lose"
+                    end
 
+                    local GameTime = math.floor(workspace.DistributedGameTime + 0.5)
+                    local Hour = math.floor(GameTime / (60^2)) % 24
+                    local Minute = math.floor(GameTime / (60^1)) % 60
+                    local Second = math.floor(GameTime / (60^0)) % 60
+                    local TimeSever = string.format("%02d:%02d:%02d", Hour, Minute, Second)
 
-        local GameTime = math.floor(workspace.DistributedGameTime+0.5)
-        local Hour = math.floor(GameTime/(60^2))%24
-        local Minute = math.floor(GameTime/(60^1))%60
-        local Second = math.floor(GameTime/(60^0))%60
-         local TimeSever = ""..Hour..":"..Minute..":"..Second                             
-    
-   
+                    local starpasslvl = game:GetService("Players").LocalPlayer.PlayerGui.TowerPassRewards.Main.Page.Main.Top.CurrentTierBox.Tier.Text
+                    local Infomation = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+                    local NameGames = Infomation.Name
 
-local starpasslvl = game:GetService("Players").LocalPlayer.PlayerGui.TowerPassRewards.Main.Page.Main.Top.CurrentTierBox.Tier.Text
+                    if WebHook ~= "" then
+                        pcall(function()
+                            local url = _G.wephook
+                            local data = {
+                                ["content"] = "",
+                                ["embeds"] = {
+                                    {
+                                        ["author"] = {
+                                            ["name"] = "Rexer Hub Web Hook"
+                                        },
+                                        ["type"] = "rich",
+                                        ["title"] = "All Star Tower Defence",
+                                        ["color"] = tonumber(0x13da),
+                                        ["fields"] = {
+                                            {
+                                                ["name"] = "Name Player",
+                                                ["value"] = "```" .. Name .. "```"
+                                            },
+                                            {
+                                                ["name"] = "Mode Select",
+                                                ["value"] = "```Mode : " .. Mirage .. "```"
+                                            },
+                                            {
+                                                ["name"] = "Star Pass",
+                                                ["value"] = "```Level : " .. starpasslvl .. "```"
+                                            },
+                                            {
+                                                ["name"] = "Elapsed Time:",
+                                                ["value"] = "```Total Time : " .. TimeSever .. "```"
+                                            },
+                                            {
+                                                ["name"] = "Result",
+                                                ["value"] = "```" .. Result .. "```"
+                                            },
+                                        }
+                                    }
+                                }
+                            }
+                            local newdata = game:GetService("HttpService"):JSONEncode(data)
 
-Infomation = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
-NameGames = Infomation.Name
-        if WebHook ~= "" then
-            pcall(function()
-                local url =
-                _G.wephook
-                local data = {
-                  ["content"] = "", --text
-                  ["embeds"] = {
-                      {   
-                          ["author"] = {
-                              ["name"] = "Rexer Hub Web Hook "
-                          },
-                          ["type"] = "rich",
-                          ["title"] = "All Star Tower Defence",
-                          ["color"] = tonumber(0x13da),
-                          ["fields"] = {
-                              {
-                                  ["name"] = "Name Player",
-                                  ["value"] = "```"..Name.."```"
-                              },
-                          {
-                                  ["name"] = "Mode Select",
-                                  ["value"] = "```Mode : "..Mirage.."```"
-                              },
-                         
-                              {
-                                  ["name"] = "Star Pass ",
-                                  ["value"] = "```Level : "..starpasslvl .."".."```"
-                              },
-                              {
-                                  ["name"] = "Elapsed Time:",
-                                  ["value"] = "```Total Time : "..TimeSever.."```"
-                              },
-				 {
-                                  ["name"] = "Result",
-                                  ["value"] = "```"..Result.."```"
-                              },
-                          }
-                      }
-                  }
-               }
-               local newdata = game:GetService("HttpService"):JSONEncode(data)
-               
-               local headers = {
-                  ["content-type"] = "application/json"
-               }
-               request = http_request or request or HttpPost or syn.request
-               local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
-               request(abcdef)
-            end)
-            else
-                print("Invaild Url")
+                            local headers = {
+                                ["content-type"] = "application/json"
+                            }
+                            local request = http_request or request or HttpPost or syn.request
+                            local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+                            request(abcdef)
+                        end)
+                    else
+                        print("Invalid Url")
+                    end
+                    Auto_Sent_WebHook = false
+                end
+            end
         end
-	Auto_Sent_WebHook = false
-end
-
-
-end
+    end)
 end)
-end
-end)
+
 
 spawn(function()
 while wait() do
