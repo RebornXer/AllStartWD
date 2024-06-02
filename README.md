@@ -2896,7 +2896,7 @@ end)
 
 spawn(function()
  pcall(function()
-  while do wait()
+  while wait() do
    if Auto_Sent_WebHook then
      if game:GetService("Players").LocalPlayer.PlayerGui.HUD.MissionEnd.BG.Status.Visible == true then
 local Name = game:GetService("Players").LocalPlayer.Name
