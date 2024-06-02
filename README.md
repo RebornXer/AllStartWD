@@ -2896,21 +2896,20 @@ end)
 
 spawn(function()
     pcall(function()
-        while true do
-            wait()
+        while wait() do
+           
             if Auto_Sent_WebHook then
                 if game:GetService("Players").LocalPlayer.PlayerGui.HUD.MissionEnd.BG.Status.Visible == true then
                     local Name = game:GetService("Players").LocalPlayer.Name
                     local PlayerCount = #game.Players:GetPlayers()
-                    local Mirage
-
+                   
                     if game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Normal.Vote.Text == "0" then
                         Mirage = "Normal"
                     else
                         Mirage = "Extreme"
                     end
 
-                    local Result
+                   
                     if game:GetService("Players").LocalPlayer.PlayerGui.HUD.MissionEnd.BG.Status.Status.Text == "Success!" then
                         Result = "Win"
                     else
@@ -2929,7 +2928,7 @@ spawn(function()
 
                     if WebHook ~= "" then
                         pcall(function()
-                            local url = _G.wephook
+                            local url = WebHook
                             local data = {
                                 ["content"] = "",
                                 ["embeds"] = {
