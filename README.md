@@ -2896,7 +2896,7 @@ end)
 
 spawn(function()
  pcall(function()
-  while do wait
+  while do wait()
    if Auto_Sent_WebHook then
      if game:GetService("Players").LocalPlayer.PlayerGui.HUD.MissionEnd.BG.Status.Visible == true then
 local Name = game:GetService("Players").LocalPlayer.Name
@@ -2979,8 +2979,9 @@ NameGames = Infomation.Name
             else
                 print("Invaild Url")
         end
+	Auto_Sent_WebHook = false
 end
-Auto_Sent_WebHook = false
+
 
 end
 end)
