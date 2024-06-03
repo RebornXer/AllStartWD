@@ -2903,9 +2903,9 @@ spawn(function()
                     local Name = game:GetService("Players").LocalPlayer.Name
                     local PlayerCount = #game.Players:GetPlayers()
                    
-                    if game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Normal.Vote.Text == "0" then
+                    if game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Normal.Vote.Text == "0" and game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Extreme.Vote.Text == "0" then
                         Mirage = "Normal"
-                    elseif game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Extreme.Vote.Text == "1" then
+                    else
                         Mirage = "Extreme"
                     end
 
