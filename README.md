@@ -2925,7 +2925,7 @@ spawn(function()
                     local starpasslvl = game:GetService("Players").LocalPlayer.PlayerGui.TowerPassRewards.Main.Page.Main.Top.CurrentTierBox.Tier.Text
                     local Infomation = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
                     local NameGames = Infomation.Name
-
+   print(WebHook)
                     if WebHook ~= "" then
                         pcall(function()
                             local url = WebHook
