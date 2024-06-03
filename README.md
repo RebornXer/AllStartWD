@@ -2905,7 +2905,7 @@ spawn(function()
                    
                     if game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Normal.Vote.Text == "0" then
                         Mirage = "Normal"
-                    else
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Extreme.Vote.Text == "1" then
                         Mirage = "Extreme"
                     end
 
