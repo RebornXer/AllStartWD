@@ -12,7 +12,7 @@ spawn(function()
 
 				game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
 
-				if game:GetService("Players").local.PlayerGui.HUD.FastForward.TextLabel.Text == "2X" then
+				if game:GetService("Players").localPlayer.PlayerGui.HUD.FastForward.TextLabel.Text == "2X" then
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
 				end
 				end
