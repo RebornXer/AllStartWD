@@ -3,6 +3,7 @@ repeat wait() until game:IsLoaded()
 spawn(function()
 	while wait() do 
 		pcall(function()
+			if  game:GetService("Players").localPlayer.PlayerGui.HUD.FastForward.Visible == true then
 			if SelectSpeedgame == "2" and game:GetService("Players").localPlayer.PlayerGui.HUD.FastForward.TextLabel.Text == "1X" then
 				
 				game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
@@ -11,8 +12,9 @@ spawn(function()
 
 				game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
 
-				if game:GetService("Players").localPlayer.PlayerGui.HUD.FastForward.TextLabel.Text == "2X" then
+				if game:GetService("Players").local.PlayerGui.HUD.FastForward.TextLabel.Text == "2X" then
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
+				end
 				end
 			end
 		end)
