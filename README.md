@@ -1,14 +1,23 @@
 repeat wait() until game:IsLoaded()
  
-if SelectSpeedgame == "2" then
-game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
-end
+spawn(function()
+	while wait() do 
+		pcall(function()
+			if SelectSpeedgame == "2" and game:GetService("Players").localPlayer.PlayerGui.HUD.FastForward.TextLabel.Text == "1X" then
+				
+				game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
+				
+			elseif SelectSpeedgame == "3" and game:GetService("Players").localPlayer.PlayerGui.HUD.FastForward.TextLabel.Text == "1X" then
 
-if SelectSpeedgame == "3" then
-game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
-wait(0.5)
-game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
-end
+				game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
+
+				if game:GetService("Players").local.PlayerGui.HUD.FastForward.TextLabel.Text == "2X" then
+					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("SpeedChange",true)
+				end
+			end
+		end)
+	end
+end)
 
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
@@ -2825,7 +2834,7 @@ spawn(function()
  while wait() do
   pcall(function()
     if AutoReplay then
-      if game:GetService("Players").LocalPlayer.PlayerGui.HUD.Setting.Page.Main.Scroll.AutoReplay.Options.Toggle.CategoryName.Text == off then
+      if game:GetService("Players").LocalPlayer.PlayerGui.HUD.Setting.Page.Main.Scroll.AutoReplay.Options.Toggle.CategoryName.Text == "off" then
 local args = {
     [1] = "AutoReplay"
 }
@@ -2849,11 +2858,11 @@ spawn(function()
 end)
 
 _G.AutoStarPass2 = true
-M:AddToggleLeft("Auto Star Paas [Mikey Use]",_G.AutoStarPass2,function(a)
+M:AddToggleLeft("Auto Star Paas",_G.AutoStarPass2,function(a)
 _G.AutoStarPass2 = a
 end)
 _G.AutoEx = true
-M:AddToggleRight("Auto Ex",_G.AutoEx,function(a)
+M:AddToggleRight("Auto Extreme",_G.AutoEx,function(a)
 _G.AutoEx = a
 end)
 
