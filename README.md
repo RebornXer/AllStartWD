@@ -3036,6 +3036,9 @@ function TP(Pos)
 	local PartPlayer = game.workspace.Camera:FindFirstChild(GetName)
 	PartPlayer.HumanoidRootPart.Position = Vector3.new(Pos)
 end
+workspace.Queue.InteractionsV2.Script170.CanCollide = false
+workspace.Queue.InteractionsV2.Script958.CanCollide = false
+workspace.Queue.InteractionsV2.Script600.CanCollide = false
 
 Tp_To_Map = true
 spawn(function()
@@ -3043,6 +3046,7 @@ spawn(function()
         pcall(function()
             if Tp_To_Map then
 				if workspace.Queue.InteractionsV2.Script170.SurfaceGui.Frame.TextLabel.Text == "Empty" then
+					
 					TP(workspace.Queue.InteractionsV2.Script170.Position)
 				elseif workspace.Queue.InteractionsV2.Script958.SurfaceGui.Frame.TextLabel.Text == "Empty" then
 					TP(workspace.Queue.InteractionsV2.Script958.Position)
