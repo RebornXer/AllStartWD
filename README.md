@@ -2994,6 +2994,43 @@ spawn(function()
     end)
 end)
 
+spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.Get_Trinkets or _G.Get_Item or _G.Teleport_NPC then
+                local playerName = game.Players.LocalPlayer.Name
+                local player = game.Workspace.Camera:FindFirstChild(playerName)
+                if player and player:FindFirstChild("HumanoidRootPart") then
+					if not player.HumanoidRootPart:FindFirstChild("BodyClip") then
+                    	local Noclip = Instance.new("BodyVelocity")
+                    	Noclip.Name = "BodyClip"
+                    	Noclip.Parent = player.HumanoidRootPart
+                    	Noclip.MaxForce = Vector3.new(100000, 100000, 100000)
+                    	Noclip.Velocity = Vector3.new(0, 0, 0)
+					end
+				end
+            end
+        end
+    end)
+end)
+
+spawn(function()
+	pcall(function()
+		game:GetService("RunService").Stepped:Connect(function()
+			local playerName = game.Players.LocalPlayer.Name
+			local player = game.Workspace.Camera:FindFirstChild(playerName)
+			if _G.Tp_To_Map then
+					for _, v in pairs(player:GetDescendants()) do
+					if v:IsA("BasePart") then
+						v.CanCollide = false    
+					end
+				end
+			end
+		end)
+	end)
+end)
+
+
 function TP(Pos)
 	local GetName = game.Players.localPlayer.Name
 	local PartPlayer = game.workspace.Camera:FindFirstChild(GetName)
@@ -3006,15 +3043,13 @@ spawn(function()
         pcall(function()
             if Tp_To_Map then
 				if workspace.Queue.InteractionsV2.Script170.SurfaceGui.Frame.TextLabel.Text == "Empty" then
-					TP(workspace.Queue.InteractionsV2.Script170.CFrame)
-					
+					TP(workspace.Queue.InteractionsV2.Script170.Position)
 				elseif workspace.Queue.InteractionsV2.Script958.SurfaceGui.Frame.TextLabel.Text == "Empty" then
-					TP(workspace.Queue.InteractionsV2.Script958.CFrame)
+					TP(workspace.Queue.InteractionsV2.Script958.Position)
 					
 				elseif workspace.Queue.InteractionsV2.Script600.SurfaceGui.Frame.TextLabel.Text == "Empty" then
-					TP(workspace.Queue.InteractionsV2.Script600.CFrame)
-				else
-					local args = {
+					TP(workspace.Queue.InteractionsV2.Script600.Position)
+				end					local args = {
 						[1] = "Script600Level",
 						[2] = "18",
 						[3] = true
@@ -3035,7 +3070,8 @@ spawn(function()
 					}
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script170Start")
-				end
+			
+				
             end
         end)
     end
