@@ -3005,7 +3005,7 @@ spawn(function()
     while wait() do
         pcall(function()
             if Tp_To_Map then
-				if workspace.Queue.InteractionsV2.Script170.SurfaceGui.Frame.TextLabel.Text == "Empty" then
+				if workspace.Queue.InteractionsV2.Script170.SurfaceGui.Frame.TextLabel.text == "Empty" then
 					Tp(workspace.Queue.InteractionsV2.Script170.CFrame)
 					local args = {
 						[1] = "Script170Level",
@@ -3014,7 +3014,7 @@ spawn(function()
 					}
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script170Start")
-				elseif workspace.Queue.InteractionsV2.Script958.SurfaceGui.Frame.TextLabel.Text == "Empty" then
+				elseif workspace.Queue.InteractionsV2.Script958.SurfaceGui.Frame.TextLabel.text == "Empty" then
 					Tp(workspace.Queue.InteractionsV2.Script958.CFrame)
 					local args = {
 						[1] = "Script958Level",
@@ -3023,7 +3023,7 @@ spawn(function()
 					}
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script958Start")
-				elseif workspace.Queue.InteractionsV2.Script600.SurfaceGui.Frame.TextLabel.Text == "Empty" then
+				elseif workspace.Queue.InteractionsV2.Script600.SurfaceGui.Frame.TextLabel.text == "Empty" then
 					Tp(workspace.Queue.InteractionsV2.Script600.CFrame)
 					local args = {
 						[1] = "Script600Level",
