@@ -2997,7 +2997,7 @@ end)
 spawn(function()
     pcall(function()
         while wait() do
-            if _G.Get_Trinkets or _G.Get_Item or _G.Teleport_NPC then
+            if Tp_To_Map then
                 local playerName = game.Players.LocalPlayer.Name
                 local player = game.Workspace.Camera:FindFirstChild(playerName)
                 if player and player:FindFirstChild("HumanoidRootPart") then
@@ -3019,7 +3019,7 @@ spawn(function()
 		game:GetService("RunService").Stepped:Connect(function()
 			local playerName = game.Players.LocalPlayer.Name
 			local player = game.Workspace.Camera:FindFirstChild(playerName)
-			if _G.Tp_To_Map then
+			if Tp_To_Map then
 					for _, v in pairs(player:GetDescendants()) do
 					if v:IsA("BasePart") then
 						v.CanCollide = false    
