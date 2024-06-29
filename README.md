@@ -2996,7 +2996,7 @@ end)
 
 function TP(Pos)
 	local GetName = game.Players.localPlayer.Name
-	local PartPlayer = game.workspace.camera:FindFirstChild(GetName)
+	local PartPlayer = game.workspace.Camera:FindFirstChild(GetName)
 	PartPlayer.HumanoidRootPart.Position = Vector3.new(Pos)
 end
 
@@ -3005,26 +3005,15 @@ spawn(function()
     while wait() do
         pcall(function()
             if Tp_To_Map then
-				if workspace.Queue.InteractionsV2.Script170.SurfaceGui.Frame.TextLabel.text == "Empty" then
-					Tp(workspace.Queue.InteractionsV2.Script170.CFrame)
-					local args = {
-						[1] = "Script170Level",
-						[2] = "18",
-						[3] = true
-					}
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script170Start")
-				elseif workspace.Queue.InteractionsV2.Script958.SurfaceGui.Frame.TextLabel.text == "Empty" then
-					Tp(workspace.Queue.InteractionsV2.Script958.CFrame)
-					local args = {
-						[1] = "Script958Level",
-						[2] = "18",
-						[3] = true
-					}
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script958Start")
-				elseif workspace.Queue.InteractionsV2.Script600.SurfaceGui.Frame.TextLabel.text == "Empty" then
-					Tp(workspace.Queue.InteractionsV2.Script600.CFrame)
+				if workspace.Queue.InteractionsV2.Script170.SurfaceGui.Frame.TextLabel.Text == "Empty" then
+					TP(workspace.Queue.InteractionsV2.Script170.CFrame)
+					
+				elseif workspace.Queue.InteractionsV2.Script958.SurfaceGui.Frame.TextLabel.Text == "Empty" then
+					TP(workspace.Queue.InteractionsV2.Script958.CFrame)
+					
+				elseif workspace.Queue.InteractionsV2.Script600.SurfaceGui.Frame.TextLabel.Text == "Empty" then
+					TP(workspace.Queue.InteractionsV2.Script600.CFrame)
+				else
 					local args = {
 						[1] = "Script600Level",
 						[2] = "18",
@@ -3032,6 +3021,20 @@ spawn(function()
 					}
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script600Start")
+					local args = {
+						[1] = "Script958Level",
+						[2] = "18",
+						[3] = true
+					}
+					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
+					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script958Start")
+					local args = {
+						[1] = "Script170Level",
+						[2] = "18",
+						[3] = true
+					}
+					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
+					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script170Start")
 				end
             end
         end)
