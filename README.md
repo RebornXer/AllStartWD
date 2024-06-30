@@ -3057,19 +3057,19 @@ spawn(function()
 					}
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script600Start")
-					local args = {
+					local argse = {
 						[1] = "Script958Level",
 						[2] = "18",
 						[3] = true
 					}
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
+					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(argse))
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script958Start")
-					local args = {
+					local argas = {
 						[1] = "Script170Level",
 						[2] = "18",
 						[3] = true
 					}
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
+					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(argas))
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script170Start")
 			
 				end		
