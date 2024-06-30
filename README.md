@@ -1,4 +1,3 @@
----121312
 repeat wait() until game:IsLoaded()
  
 spawn(function()
@@ -2869,6 +2868,75 @@ M:AddToggleRight("Auto Extreme",_G.AutoEx,function(a)
 _G.AutoEx = a
 end)
 
+spawn(function()
+	while wait() do
+	 if _G.AutoEx then
+	  pcall(function()
+	  if game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Visible == true then
+	local argws = {
+		[1] = "VoteGameMode",
+		[2] = "Extreme"
+	}
+	
+	game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Input"):FireServer(unpack(argws))
+	end
+	end)
+	end
+	end
+	end)
+	
+	
+	
+	spawn(function()
+		while wait(5) do
+			pcall(function()
+				if _G.AutoStarPass2 then
+					-- กำหนดตำแหน่งและชื่อ Unit ที่ต้องการวาง
+					local targetPosition = Vector3.new(65.02046203613281, 176.46029663085938, 1274.2550048828125)
+					local unitName = "Ivankov2"
+	
+					-- ตรวจสอบว่ามี Unit ที่ตำแหน่งนี้หรือไม่
+					local hasUnit = false
+					for _, unit in pairs(game.Workspace:GetChildren()) do
+						if unit:IsA("Model") and unit.Name == unitName then
+							local primaryPart = unit:FindFirstChild("HumanoidRootPart") or unit.PrimaryPart
+							if primaryPart and primaryPart.Position == targetPosition then
+								hasUnit = true
+								break
+							end
+						end
+					end
+	
+					-- ถ้าไม่มี Unit ที่ตำแหน่งนี้, ทำการวาง Unit ใหม่
+					if not hasUnit then
+						local args = {
+							[1] = "Summon",
+							[2] = {
+								["Rotation"] = 0,
+								["cframe"] = CFrame.new(targetPosition),
+								["Unit"] = unitName
+							}
+						}
+						game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Input"):FireServer(unpack(args))
+					end
+				end
+			end)
+		end
+	end)
+	
+	
+	
+	
+	spawn(function()
+	while wait(1) do
+	pcall(function()
+	 if  _G.AutoStarPass2 then
+	game:GetService("ReplicatedStorage").Remotes.Server:InvokeServer("Upgrade",workspace:WaitForChild("Unit"):WaitForChild("Ivankov2"))
+	end
+	end)
+	end
+	end)
+
 local player = game:GetService("Players").LocalPlayer
 
 local blackscreen = function(enable)
@@ -2995,158 +3063,48 @@ spawn(function()
     end)
 end)
 
-spawn(function()
-    pcall(function()
-        while wait() do
-            if Tp_To_Map then
-                local playerName = game.Players.LocalPlayer.Name
-                local player = game.Workspace.Camera:FindFirstChild(playerName)
-                if player and player:FindFirstChild("HumanoidRootPart") then
-					if not player.HumanoidRootPart:FindFirstChild("BodyClip") then
-                    	local Noclip = Instance.new("BodyVelocity")
-                    	Noclip.Name = "BodyClip"
-                    	Noclip.Parent = player.HumanoidRootPart
-                    	Noclip.MaxForce = Vector3.new(100000, 100000, 100000)
-                    	Noclip.Velocity = Vector3.new(0, 0, 0)
-					end
-				end
-            end
-        end
-    end)
-end)
-
-spawn(function()
-	pcall(function()
-		game:GetService("RunService").Stepped:Connect(function()
-			local playerName = game.Players.LocalPlayer.Name
-			local player = game.Workspace.Camera:FindFirstChild(playerName)
-			if Tp_To_Map then
-					for _, v in pairs(player:GetDescendants()) do
-					if v:IsA("BasePart") then
-						v.CanCollide = false    
-					end
-				end
-			end
-		end)
-	end)
-end)
-
-workspace.Queue.InteractionsV2.Script170.CanCollide = false
-workspace.Queue.InteractionsV2.Script958.CanCollide = false
-workspace.Queue.InteractionsV2.Script600.CanCollide = false
-
 Tp_To_Map = true
 spawn(function()
     while wait() do
         pcall(function()
             if Tp_To_Map then
-				local GetName = game.Players.localPlayer.Name
-	local PartPlayer = game.workspace.Camera:FindFirstChild(GetName)
-				if workspace.Queue.InteractionsV2.Script170.SurfaceGui.Frame.TextLabel.Text == "Empty" then
-					
-					workspace.Queue.InteractionsV2.Script170.CFrame = PartPlayer.HumanoidRootPart.CFrame
-				elseif workspace.Queue.InteractionsV2.Script958.SurfaceGui.Frame.TextLabel.Text == "Empty" then
-					workspace.Queue.InteractionsV2.Script958.CFrame = PartPlayer.HumanoidRootPart.CFrame
-					
-				elseif workspace.Queue.InteractionsV2.Script600.SurfaceGui.Frame.TextLabel.Text == "Empty" then
-					workspace.Queue.InteractionsV2.Script600.CFrame = PartPlayer.HumanoidRootPart.CFrame
-				end
-					if game:GetService("Players").localPlayer.PlayerGui.HUD.MissionsV2.Visible == true then
-					local args = {
-						[1] = "Script600Level",
-						[2] = "18",
-						[3] = true
-					}
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script600Start")
-					local argse = {
-						[1] = "Script958Level",
-						[2] = "18",
-						[3] = true
-					}
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(argse))
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script958Start")
-					local argas = {
-						[1] = "Script170Level",
-						[2] = "18",
-						[3] = true
-					}
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(argas))
-					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script170Start")
-			
-				end		
-            end
-        end)
-    end
-end)
-
-
-
-spawn(function()
-while wait() do
- if _G.AutoEx then
-  pcall(function()
-  if game:GetService("Players").LocalPlayer.PlayerGui.HUD.ModeVoteFrame.Visible == true then
-local argws = {
-    [1] = "VoteGameMode",
-    [2] = "Extreme"
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Input"):FireServer(unpack(argws))
-end
-end)
-end
-end
-end)
-
-
-
-spawn(function()
-    while wait(5) do
-        pcall(function()
-            if _G.AutoStarPass2 then
-                -- กำหนดตำแหน่งและชื่อ Unit ที่ต้องการวาง
-                local targetPosition = Vector3.new(65.02046203613281, 176.46029663085938, 1274.2550048828125)
-                local unitName = "Ivankov2"
-
-                -- ตรวจสอบว่ามี Unit ที่ตำแหน่งนี้หรือไม่
-                local hasUnit = false
-                for _, unit in pairs(game.Workspace:GetChildren()) do
-                    if unit:IsA("Model") and unit.Name == unitName then
-                        local primaryPart = unit:FindFirstChild("HumanoidRootPart") or unit.PrimaryPart
-                        if primaryPart and primaryPart.Position == targetPosition then
-                            hasUnit = true
-                            break
-                        end
-                    end
+                local player = game.Players.LocalPlayer
+                local partPlayer = game.Workspace.Camera:FindFirstChild(player.Name)
+                
+                if workspace.Queue.InteractionsV2.Script170.SurfaceGui.Frame.TextLabel.Text == "Empty" then
+                    workspace.Queue.InteractionsV2.Script170.CFrame = partPlayer.HumanoidRootPart.CFrame
+                elseif workspace.Queue.InteractionsV2.Script958.SurfaceGui.Frame.TextLabel.Text == "Empty" then
+                    workspace.Queue.InteractionsV2.Script958.CFrame = partPlayer.HumanoidRootPart.CFrame
+                elseif workspace.Queue.InteractionsV2.Script600.SurfaceGui.Frame.TextLabel.Text == "Empty" then
+                    workspace.Queue.InteractionsV2.Script600.CFrame = partPlayer.HumanoidRootPart.CFrame
                 end
-
-                -- ถ้าไม่มี Unit ที่ตำแหน่งนี้, ทำการวาง Unit ใหม่
-                if not hasUnit then
-                    local args = {
-                        [1] = "Summon",
-                        [2] = {
-                            ["Rotation"] = 0,
-                            ["cframe"] = CFrame.new(targetPosition),
-                            ["Unit"] = unitName
-                        }
+                
+                if player.PlayerGui.HUD.MissionsV2.Visible == true then
+                    local args1 = {
+                        [1] = "Script600Level",
+                        [2] = "18",
+                        [3] = true
                     }
-                    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Input"):FireServer(unpack(args))
+                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args1))
+                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script600Start")
+                    
+                    local args2 = {
+                        [1] = "Script958Level",
+                        [2] = "18",
+                        [3] = true
+                    }
+                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args2))
+                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script958Start")
+                    
+                    local args3 = {
+                        [1] = "Script170Level",
+                        [2] = "18",
+                        [3] = true
+                    }
+                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args3))
+                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script170Start")
                 end
             end
         end)
     end
-end)
-
-
-
-
-spawn(function()
-while wait(1) do
-pcall(function()
- if  _G.AutoStarPass2 then
-game:GetService("ReplicatedStorage").Remotes.Server:InvokeServer("Upgrade",workspace:WaitForChild("Unit"):WaitForChild("Ivankov2"))
-end
-end)
-end
 end)
