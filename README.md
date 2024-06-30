@@ -39,6 +39,19 @@ for i, e in pairs(l:GetChildren()) do
 end
 
 spawn(function()
+    while true do wait()
+       rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(Kick)
+            if not _G.rejoin then
+                if Kick.Name == 'ErrorPrompt' and Kick:FindFirstChild('MessageArea') and Kick.MessageArea:FindFirstChild("ErrorFrame") then
+                    game:GetService("TeleportService"):Teleport(game.PlaceId)
+                    wait(50)
+                end
+            end
+        end)
+    end
+end)  
+
+spawn(function()
 	while wait() do 
 		pcall(function()
 			if  game:GetService("Players").localPlayer.PlayerGui.HUD.FastForward.Visible == true then
@@ -2854,7 +2867,51 @@ end
  local RenUi = Update:AddWindow("RebornXer Hub","10039618734",Enum.KeyCode.RightControl)
 
     local M = RenUi:AddTab("Main","6026568198")
-    local T= RenUi:AddTab("Island","6035190846")
+    local T= RenUi:AddTab("Miss","6035190846")
+
+	T:AddButtonRight("Add File To Auto Exec File",function()
+	-- ฟังก์ชันสำหรับตรวจสอบว่าไฟล์มีอยู่หรือไม่
+function file_exists(name)
+	local f = io.open(name, "r")
+	if f then f:close() end
+	return f ~= nil
+ end
+ 
+ -- ชื่อไฟล์ที่ต้องการตรวจสอบและสร้าง
+ local filename = "/storage/emulated/0/Arceus X/Autoexec/example.txt"
+ 
+ -- ข้อมูลที่ต้องการเขียนลงในไฟล์
+ local file_content = [[
+ BlackScreen = true
+ SelectSpeedgame = "3"
+ WebHook = "https://discord.com/api/webhooks/1247351766924656682/HIcf6OmHHvTRpuAO39QXbh_euw3F5L2T-pt56B1sfZyZL2qJWBzKLiqdQFlS92DLkknK"
+ Auto_Sent_WebHook = true
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/RebornXer/AllStartWD/main/README.md"))()
+ ]]
+ 
+ -- ตรวจสอบว่าไฟล์มีอยู่หรือไม่
+ if file_exists(filename) then
+	 print("ไฟล์มีอยู่แล้ว: " .. filename)
+ else
+	 -- เปิดไฟล์ในโหมดเขียน (write mode)
+	 local file = io.open(filename, "w")
+	 
+	 -- ตรวจสอบว่าไฟล์เปิดสำเร็จหรือไม่
+	 if file then
+		 -- เขียนข้อมูลลงในไฟล์
+		 file:write(file_content)
+		 
+		 -- ปิดไฟล์
+		 file:close()
+		 
+		 print("สร้างไฟล์และเขียนข้อมูลลงในไฟล์สำเร็จ: " .. filename)
+	 else
+		 -- ถ้าไม่สามารถเปิดไฟล์ได้
+		 print("ไม่สามารถเปิดไฟล์ได้: " .. filename)
+	 end
+ end
+ 
+	end)
 M:AddSeperatorLeft("Info")
     M:AddLabelLeft("Wecome To RebornXer Hub Script")
     Date = os.date("%d".." ".."%B".." ".."%Y")
