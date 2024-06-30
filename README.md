@@ -2900,7 +2900,6 @@ spawn(function()
 					for _, unit in pairs(game.Workspace:GetChildren()) do
 						if unit:IsA("Model") and unit.Name == unitName then
 							local primaryPart = unit:FindFirstChild("HumanoidRootPart") or unit.PrimaryPart
-							if primaryPart and primaryPart.Position == targetPosition then
 								hasUnit = true
 								break
 							end
@@ -2978,7 +2977,7 @@ spawn(function()
     pcall(function()
         while wait() do
            
-            if Auto_Sent_WebHook then
+            if Auto_Sent_WebHook and _G.AutoStarPass2 then
                 if game:GetService("Players").LocalPlayer.PlayerGui.HUD.MissionEnd.BG.Status.Visible == true then
                     local Name = game:GetService("Players").LocalPlayer.Name
                     local PlayerCount = #game.Players:GetPlayers()
@@ -3063,11 +3062,10 @@ spawn(function()
     end)
 end)
 
-Tp_To_Map = true
 spawn(function()
     while wait() do
         pcall(function()
-            if Tp_To_Map then
+            if _G.AutoStarPass2 then
                 local player = game.Players.LocalPlayer
                 local partPlayer = game.Workspace.Camera:FindFirstChild(player.Name)
                 
