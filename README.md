@@ -2894,20 +2894,8 @@ spawn(function()
 					-- กำหนดตำแหน่งและชื่อ Unit ที่ต้องการวาง
 					local targetPosition = Vector3.new(65.02046203613281, 176.46029663085938, 1274.2550048828125)
 					local unitName = "Ivankov2"
-	
-					-- ตรวจสอบว่ามี Unit ที่ตำแหน่งนี้หรือไม่
-					local hasUnit = false
-					for _, unit in pairs(game.Workspace:GetChildren()) do
-						if unit:IsA("Model") and unit.Name == unitName then
-							local primaryPart = unit:FindFirstChild("HumanoidRootPart") or unit.PrimaryPart
-								hasUnit = true
-								break
-							
-						end
-					end
-	
 					-- ถ้าไม่มี Unit ที่ตำแหน่งนี้, ทำการวาง Unit ใหม่
-					if not hasUnit then
+					if not workspace.Unit:FindFirstChild("Ivankov2") then
 						local args = {
 							[1] = "Summon",
 							[2] = {
