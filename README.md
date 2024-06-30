@@ -3030,12 +3030,6 @@ spawn(function()
 	end)
 end)
 
-
-function TP(Pos)
-	local GetName = game.Players.localPlayer.Name
-	local PartPlayer = game.workspace.Camera:FindFirstChild(GetName)
-	PartPlayer.HumanoidRootPart.Position = Vector3.new(Pos)
-end
 workspace.Queue.InteractionsV2.Script170.CanCollide = false
 workspace.Queue.InteractionsV2.Script958.CanCollide = false
 workspace.Queue.InteractionsV2.Script600.CanCollide = false
@@ -3045,15 +3039,18 @@ spawn(function()
     while wait() do
         pcall(function()
             if Tp_To_Map then
+				local GetName = game.Players.localPlayer.Name
+	local PartPlayer = game.workspace.Camera:FindFirstChild(GetName)
 				if workspace.Queue.InteractionsV2.Script170.SurfaceGui.Frame.TextLabel.Text == "Empty" then
 					
-					TP(workspace.Queue.InteractionsV2.Script170.Position)
+					workspace.Queue.InteractionsV2.Script170.CFrame = PartPlayer.HumanoidRootPart.CFrame
 				elseif workspace.Queue.InteractionsV2.Script958.SurfaceGui.Frame.TextLabel.Text == "Empty" then
-					TP(workspace.Queue.InteractionsV2.Script958.Position)
+					workspace.Queue.InteractionsV2.Script958.CFrame = PartPlayer.HumanoidRootPart.CFrame
 					
 				elseif workspace.Queue.InteractionsV2.Script600.SurfaceGui.Frame.TextLabel.Text == "Empty" then
-					TP(workspace.Queue.InteractionsV2.Script600.Position)
-				end					local args = {
+					workspace.Queue.InteractionsV2.Script600.CFrame = PartPlayer.HumanoidRootPart.CFrame
+				elseif game:GetService("Players").localPlayer.PlayerGui.HUD.MissionsV2.Visible == true then
+					local args = {
 						[1] = "Script600Level",
 						[2] = "18",
 						[3] = true
@@ -3075,12 +3072,11 @@ spawn(function()
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
 					game:GetService("ReplicatedStorage").Remotes.Input:FireServer("Script170Start")
 			
-				
+				end		
             end
         end)
     end
 end)
-
 
 
 
