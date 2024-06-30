@@ -1,3 +1,4 @@
+---121312
 repeat wait() until game:IsLoaded()
  
 spawn(function()
@@ -3049,7 +3050,8 @@ spawn(function()
 					
 				elseif workspace.Queue.InteractionsV2.Script600.SurfaceGui.Frame.TextLabel.Text == "Empty" then
 					workspace.Queue.InteractionsV2.Script600.CFrame = PartPlayer.HumanoidRootPart.CFrame
-				elseif game:GetService("Players").localPlayer.PlayerGui.HUD.MissionsV2.Visible == true then
+				end
+					if game:GetService("Players").localPlayer.PlayerGui.HUD.MissionsV2.Visible == true then
 					local args = {
 						[1] = "Script600Level",
 						[2] = "18",
